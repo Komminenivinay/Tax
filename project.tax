@@ -1,0 +1,93 @@
+
+---
+
+ Summary
+
+- **Rule-Based Approach**: Straightforward implementation; good when tax slabs are known.
+- **ML-Based Approach**: Suitable for complex datasets or predicting outcomes like refund amounts or processing time.
+- Most implementations will rely on **Python**, **Pandas**, optionally **Scikit-learn**, and possibly visualization tools.
+
+---
+
+#programm
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Sample dataset
+data = {
+    'Year': [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    'Income': [5.0, 6.0, 7.0, 8.5, 10.0, 11.5, 13.0],
+    'Tax': [0.5, 0.7, 0.9, 1.1, 1.4, 1.6, 1.9]
+}
+df = pd.DataFrame(data)
+
+# Train a linear regression model
+model = LinearRegression()
+X = df[['Income']]
+y = df['Tax']
+model.fit(X, y)
+
+# Predict tax for 2025 with projected income (e.g., ₹14.5 Lakhs)
+income_2025 = 14.5
+tax_2025 = model.predict([[income_2025]])[0]
+
+print(f"Predicted Tax for 2025 (Income ₹{income_2025} Lakhs): ₹{tax_2025:.2f} Lakhs")
+
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Income'], df['Tax'], color='blue', label='Actual Data')
+plt.plot(df['Income'], model.predict(df[['Income']]), color='green', label='Regression Line')
+plt.scatter([income_2025], [tax_2025], color='red', label='2025 Prediction')
+plt.title('Income vs Tax Prediction')
+plt.xlabel('Income (in ₹ Lakhs)')
+plt.ylabel('Tax Paid (in ₹ Lakhs)')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Sample dataset
+data = {
+    'Year': [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    'Income': [5.0, 6.0, 7.0, 8.5, 10.0, 11.5, 13.0],
+    'Tax': [0.5, 0.7, 0.9, 1.1, 1.4, 1.6, 1.9]
+}
+df = pd.DataFrame(data)
+
+# Train a linear regression model
+model = LinearRegression()
+X = df[['Income']]
+y = df['Tax']
+model.fit(X, y)
+
+# Predict tax for 2025 with projected income (e.g., ₹14.5 Lakhs)
+income_2025 = 14.5
+tax_2025 = model.predict([[income_2025]])[0]
+
+print(f"Predicted Tax for 2025 (Income ₹{income_2025} Lakhs): ₹{tax_2025:.2f} Lakhs")
+
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Income'], df['Tax'], color='blue', label='Actual Data')
+plt.plot(df['Income'], model.predict(df[['Income']]), color='green', label='Regression Line')
+plt.scatter([income_2025], [tax_2025], color='red', label='2025 Prediction')
+plt.title('Income vs Tax Prediction')
+plt.xlabel('Income (in ₹ Lakhs)')
+plt.ylabel('Tax Paid (in ₹ Lakhs)')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
